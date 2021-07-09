@@ -1,16 +1,22 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item [routerLink]="'/question-management'">
+        <span class="material-icons">settings</span>
+        Question Management
+      </a>
+      <a mat-list-item [routerLink]="'/questionnaire'">
+        <span class="material-icons">question_answer</span>
+        Questionnaire
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+
     <mat-toolbar color="primary">
       <button
         type="button"
@@ -22,6 +28,9 @@
       </button>
       <span>Questionnaire Constructor</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <div class="content-wrap">
+      <router-outlet></router-outlet>
+    </div>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
