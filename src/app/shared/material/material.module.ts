@@ -18,6 +18,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 const modules = [
   CommonModule,
@@ -38,7 +41,9 @@ const modules = [
   MatSliderModule,
   MatTooltipModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatRadioModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

@@ -1,0 +1,9 @@
+.questionnaire {
+  display: flex;
+  flex-direction: row;
+  &__item {
+    width: 50%;
+    padding: 5px;
+    min-height: 100vh;
+  }
+}

@@ -8,6 +8,7 @@ import { NavigationComponent } from './core/containers/navigation/navigation.com
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './shared/material/material.module';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FlexLayoutModule,
     MaterialModule,
   ],
   providers: [],

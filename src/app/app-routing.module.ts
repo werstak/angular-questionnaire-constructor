@@ -10,18 +10,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'question-management',
+        redirectTo: 'question-list-management',
         pathMatch: 'full'
       },
       {
-        path: 'question-management',
+        path: 'question-list-management',
         loadChildren: () => import('./modules/question-management/question-management.module').then(m => m.QuestionManagementModule)
       },
       {
         path: 'questionnaire',
         loadChildren: () => import('./modules/questionnaire/questionnaire.module').then(m => m.QuestionnaireModule)
       },
-      {path: '', redirectTo: '/question-management', pathMatch: 'full'},
+      {path: '', redirectTo: '/question-list-management', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]
   },
