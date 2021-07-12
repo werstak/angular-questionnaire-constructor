@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { QuestionsInterface } from '../../../shared/interfaces/questions.interface';
 
 @Component({
   selector: 'app-answer-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./answer-list.component.scss']
 })
 export class AnswerListComponent implements OnInit {
+  @Input()
+  answers: QuestionsInterface[];
 
   constructor() { }
 
