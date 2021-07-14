@@ -1,15 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionsInterface } from '../../../shared/interfaces/questions.interface';
+import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuestionnaireService } from '../questionnaire.service';
+import { QuestionnaireService } from '../../questionnaire.service';
 
 @Component({
-  selector: 'app-question-open',
-  templateUrl: './question-open.component.html',
-  styleUrls: ['./question-open.component.scss']
+  selector: 'app-question-single-choice',
+  templateUrl: './question-single-choice.component.html',
+  styleUrls: ['./question-single-choice.component.scss']
 })
-export class QuestionOpenComponent implements OnInit {
-
+export class QuestionSingleChoiceComponent implements OnInit {
   @Input()
   question: QuestionsInterface;
   form: FormGroup;
@@ -26,18 +25,14 @@ export class QuestionOpenComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      answer: [null, Validators.compose([
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(225)])
-      ],
+      answer: ['', [Validators.required]],
     });
   }
 
   submit(): void {
     this.questionnaireService.setAnswer(
       this.question.id,
-      this.form.value
+      this.form.value.answer
     );
   }
 }

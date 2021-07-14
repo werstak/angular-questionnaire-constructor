@@ -1,4 +1,13 @@
 <h2>Answer List</h2>
-<mat-card>Simple card</mat-card>
 
-{{answers | json}}
+
+<div *ngFor="let answer of answers">
+
+<!--  {{answer | json}}-->
+
+  <app-answer-single-choice [answer]="answer" *ngIf="answer.questionType === 'radio'"></app-answer-single-choice>
+  <app-answer-multiple-choice [answer]="answer" *ngIf="answer.questionType === 'checkbox'"></app-answer-multiple-choice>
+  <app-answer-open [answer]="answer" *ngIf="answer.questionType === 'textarea'"></app-answer-open>
+</div>
+
+

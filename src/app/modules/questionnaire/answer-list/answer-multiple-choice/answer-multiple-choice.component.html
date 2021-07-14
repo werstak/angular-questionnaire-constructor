@@ -1,0 +1,11 @@
+<mat-card class="question-card">
+  <section class="example-section" [formGroup]="form">
+    <h4>{{answer.questionTitle}}</h4>
+    <p *ngFor="let answer of answer.answers">
+      <mat-checkbox [formControlName]="answer.value" [disabled]="true">
+        {{answer.title}}
+      </mat-checkbox>
+    </p>
+  </section>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Answers</button>
+</mat-card>
