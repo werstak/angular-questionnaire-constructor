@@ -1,8 +1,7 @@
-
-<mat-card class="question-card">
+<mat-card class="question-card" [formGroup]="form">
+  <h4>{{question.questionTitle}}</h4>
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    <textarea matInput placeholder="Your message text" formControlName="answer" [value]="question.answer"></textarea>
   </mat-form-field>
-  <button mat-raised-button color="primary">Answers</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Answers</button>
 </mat-card>

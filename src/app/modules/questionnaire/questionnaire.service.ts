@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QUESTIONS } from '../../shared/constants/questions';
 import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { map, publishLast, shareReplay, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { QuestionsInterface } from '../../shared/interfaces/questions.interface';
 
 @Injectable({

@@ -11,7 +11,8 @@ export class QuestionListComponent implements OnInit {
   @Input()
   questions: QuestionsInterface[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

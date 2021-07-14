@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionsInterface } from '../../../shared/interfaces/questions.interface';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionnaireService } from '../questionnaire.service';
 
 @Component({
@@ -11,16 +11,22 @@ import { QuestionnaireService } from '../questionnaire.service';
 export class QuestionSingleChoiceComponent implements OnInit {
   @Input()
   question: QuestionsInterface;
-
-  form = new FormGroup({
-    answer: new FormControl(null, Validators.required)
-  });
+  form: FormGroup;
 
   constructor(
-    private questionnaireService: QuestionnaireService
-  ) { }
+    private questionnaireService: QuestionnaireService,
+    private fb: FormBuilder,
+  ) {
+  }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  private buildForm(): void {
+    this.form = this.fb.group({
+      answer: ['', [Validators.required]],
+    });
   }
 
   submit(): void {
