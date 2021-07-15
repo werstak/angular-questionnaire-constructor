@@ -4,42 +4,54 @@ export const QUESTIONS: QuestionsInterface[] = [
   {
     id: 1,
     questionType: 'radio',
-    questionTitle: 'How often do you go to a cafe?',
+    questionTitle: 'How did you hear about our "product" for the first time?',
     answers: [
-      {value: 'one_answer', title: 'Everyday'},
-      {value: 'two_answer', title: 'Few times a week'},
+      {value: 'one_answer', title: 'On TV'},
+      {value: 'two_answer', title: 'On the Internet / Website'},
+      {value: 'three_answer', title: 'From friends'},
     ]
   },
   {
     id: 2,
     questionType: 'checkbox',
-    questionTitle: 'What do you most often order in a cafe?',
+    questionTitle: 'Where did you buy the "product"?',
     answers: [
-      {value: 'one_answer', title: 'Vegetables, fruits, herbs'},
-      {value: 'two_answer', title: 'Meat, fish, eggs'},
-      {value: 'three_answer', title: 'Dairy products'},
-      {value: 'four_answer', title: 'Drinks'},
+      {value: 'one_answer', title: 'At the pharmacy'},
+      {value: 'two_answer', title: 'In the Internet'},
+      {value: 'three_answer', title: 'In the mall'},
     ]
   },
   {
     id: 3,
     questionType: 'textarea',
-    questionTitle: 'If you have any suggestions to improve the service of our cafe, write them here:',
+    questionTitle: 'What do you like most about our "product"?',
     answer: '',
   },
   {
     id: 4,
     questionType: 'radio',
-    questionTitle: 'How often do you go to a cafe?111',
+    questionTitle: 'Please rate the overall quality of our "product":',
     answers: [
-      {value: 'one_answer111', title: 'Everyday111'},
-      {value: 'two_answer111', title: 'Few times a week111'},
+      {value: 'one_answer', title: 'Low'},
+      {value: 'two_answer', title: 'Average'},
+      {value: 'three_answer', title: 'High'},
     ]
   },
   {
     id: 5,
+    questionType: 'checkbox',
+    questionTitle: 'How often do you use the "product"?',
+    answers: [
+      {value: 'one_answer', title: 'Daily'},
+      {value: 'two_answer', title: 'Once a week'},
+      {value: 'three_answer', title: 'Once a month'},
+      {value: 'four_answer', title: 'Once a year'},
+    ]
+  },
+  {
+    id: 6,
     questionType: 'textarea',
-    questionTitle: 'If you have any suggestions to improve the service of our cafe, write them here:',
+    questionTitle: 'If you have any suggestions for improving our "product"?',
     answer: '',
   },
 ];
