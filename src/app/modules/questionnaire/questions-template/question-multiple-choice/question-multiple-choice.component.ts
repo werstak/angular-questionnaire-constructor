@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
+
 import { QuestionnaireService } from '../../questionnaire.service';
+
+import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 import { AnswersInterface } from '../../../../shared/interfaces/answers.interface';
 
 @Component({
@@ -42,7 +44,6 @@ export class QuestionMultipleChoiceComponent implements OnInit {
           const control = formGroup.controls[key];
           return control.value;
         });
-
         return isFilled ? null : {requireCheckboxesToBeChecked: true};
       }
     });

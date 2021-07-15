@@ -11,16 +11,16 @@ import { AnswersInterface } from '../../shared/interfaces/answers.interface';
   providedIn: 'root',
 })
 export class QuestionnaireService {
+  allQuestions: QuestionsInterface;
+  answers$: Observable<QuestionsInterface[]>;
+  questions$: Observable<QuestionsInterface[]>;
   allAnswers$ = new BehaviorSubject<AnswersInterface>(
     this.getAllAnswers()
   );
 
-  questions$: Observable<QuestionsInterface[]>;
-  answers$: Observable<QuestionsInterface[]>;
-
-  constructor() {
+  initQuestionsAnswers$(allQuestions: any): void {
     this.questions$ = combineLatest([
-      of(QUESTIONS),
+      of(allQuestions),
       this.allAnswers$
     ]).pipe(
       map(([questions, allAnswers]) => {
@@ -31,7 +31,7 @@ export class QuestionnaireService {
     );
 
     this.answers$ = combineLatest([
-      of(QUESTIONS),
+      of(allQuestions),
       this.allAnswers$
     ]).pipe(
       map(([questions, allAnswers]) => {
@@ -42,14 +42,22 @@ export class QuestionnaireService {
         });
       }),
     );
-
   }
 
+
+  setAllQuestions(): void {
+    localStorage.setItem('all_questions', JSON.stringify(QUESTIONS));
+    this.getAllQuestions();
+  }
+
+  getAllQuestions(): any {
+    this.allQuestions = JSON.parse(localStorage.getItem('all_questions') || '{}');
+    this.initQuestionsAnswers$(this.allQuestions);
+  }
 
   setAnswer(questionId: number, answer: string | string[]): void {
     const answers = this.getAllAnswers();
     answers[questionId] = {createdAt: Date.now(), value: answer};
-
     localStorage.setItem('answers', JSON.stringify(answers));
 
     this.allAnswers$.next(answers);

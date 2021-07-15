@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { QuestionnaireService } from '../../questionnaire.service';
+
 import { AnswersInterface } from '../../../../shared/interfaces/answers.interface';
+import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 
 @Component({
   selector: 'app-question-open',
