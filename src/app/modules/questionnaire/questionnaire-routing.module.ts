@@ -4,12 +4,12 @@ import { QuestionnaireComponent } from './containers/questionnaire/questionnaire
 
 const routes: Routes = [
   {
-    path: 'list-questions',
+    path: 'list',
     component: QuestionnaireComponent,
   },
   {
     path: '',
-    redirectTo: 'list-questions',
+    redirectTo: 'list',
     pathMatch: 'full',
   }
 ];

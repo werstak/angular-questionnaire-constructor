@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { QUESTIONS } from '../../shared/constants/questions';
-import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
+
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { QuestionsInterface } from '../../shared/interfaces/questions.interface';
+import { AnswersInterface } from '../../shared/interfaces/answers.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionnaireService {
-  allAnswers$ = new BehaviorSubject<any>(
+  allAnswers$ = new BehaviorSubject<AnswersInterface>(
     this.getAllAnswers()
   );
 
@@ -38,10 +41,7 @@ export class QuestionnaireService {
       }),
     );
 
-    // const answers = this.getAllAnswers();
-    // this.allAnswers$.next(answers);
   }
-
 
 
   setAnswer(questionId: number, answer: string | string[]): void {
@@ -52,7 +52,20 @@ export class QuestionnaireService {
     this.allAnswers$.next(answers);
   }
 
-  getAllAnswers(): any {
+  deleteAnswer(questionId: number): void {
+    const answers = this.getAllAnswers();
+    delete answers[questionId];
+    localStorage.setItem('answers', JSON.stringify(answers));
+
+    this.allAnswers$.next(answers);
+  }
+
+  getAllAnswers(): AnswersInterface {
     return JSON.parse(localStorage.getItem('answers') || '{}');
+  }
+
+  getAllAnswersById(id: number): AnswersInterface {
+    const answers = this.getAllAnswers();
+    return answers[id];
   }
 }

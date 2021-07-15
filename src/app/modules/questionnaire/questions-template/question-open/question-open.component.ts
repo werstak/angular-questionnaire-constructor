@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionnaireService } from '../../questionnaire.service';
+import { AnswersInterface } from '../../../../shared/interfaces/answers.interface';
 
 @Component({
   selector: 'app-question-open',
@@ -13,6 +14,7 @@ export class QuestionOpenComponent implements OnInit {
   @Input()
   question: QuestionsInterface;
   form: FormGroup;
+  answer: AnswersInterface;
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -21,23 +23,32 @@ export class QuestionOpenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.answer = this.questionnaireService.getAllAnswersById(this.question.id) || null;
     this.buildForm();
+  }
+
+  get isEdit(): boolean {
+    return Boolean(this.answer);
   }
 
   private buildForm(): void {
     this.form = this.fb.group({
-      answer: [null, Validators.compose([
+      answer: this.fb.control({value: this.answer?.answer, disabled: this.isEdit}, Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(225)])
-      ],
+      ),
     });
   }
 
   submit(): void {
-    this.questionnaireService.setAnswer(
-      this.question.id,
-      this.form.value
-    );
+    if (this.isEdit) {
+      this.questionnaireService.deleteAnswer(this.question.id);
+    } else {
+      this.questionnaireService.setAnswer(
+        this.question.id,
+        this.form.value
+      );
+    }
   }
 }

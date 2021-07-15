@@ -1,7 +1,0 @@
-<mat-card class="question-card" [formGroup]="form">
-  <h4>{{question.questionTitle}}</h4>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <textarea matInput placeholder="Your message text" formControlName="answer" [value]="question.answer"></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Answers</button>
-</mat-card>

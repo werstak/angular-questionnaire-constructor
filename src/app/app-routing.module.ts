@@ -10,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'questionnaire/list-questions',
+        redirectTo: 'questionnaire/list',
         pathMatch: 'full'
       },
       {
-        path: 'question-list-management',
+        path: 'question-management',
         loadChildren: () => import('./modules/question-management/question-management.module').then(m => m.QuestionManagementModule)
       },
       {

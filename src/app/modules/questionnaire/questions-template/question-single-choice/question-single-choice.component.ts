@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { QuestionsInterface } from '../../../../shared/interfaces/questions.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionnaireService } from '../../questionnaire.service';
+import { AnswersInterface } from '../../../../shared/interfaces/answers.interface';
 
 @Component({
   selector: 'app-question-single-choice',
@@ -12,6 +13,7 @@ export class QuestionSingleChoiceComponent implements OnInit {
   @Input()
   question: QuestionsInterface;
   form: FormGroup;
+  answer: AnswersInterface;
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -20,19 +22,28 @@ export class QuestionSingleChoiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.answer = this.questionnaireService.getAllAnswersById(this.question.id) || null;
     this.buildForm();
+  }
+
+  get isEdit(): boolean {
+    return Boolean(this.answer);
   }
 
   private buildForm(): void {
     this.form = this.fb.group({
-      answer: ['', [Validators.required]],
+      answer: this.fb.control({value: this.answer, disabled: this.isEdit}, Validators.required)
     });
   }
 
   submit(): void {
-    this.questionnaireService.setAnswer(
-      this.question.id,
-      this.form.value.answer
-    );
+    if (this.isEdit) {
+      this.questionnaireService.deleteAnswer(this.question.id);
+    } else {
+      this.questionnaireService.setAnswer(
+        this.question.id,
+        this.form.value.answer
+      );
+    }
   }
 }
