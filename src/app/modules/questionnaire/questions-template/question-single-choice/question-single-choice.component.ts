@@ -32,7 +32,7 @@ export class QuestionSingleChoiceComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      answer: this.fb.control({value: this.answer, disabled: this.isEdit}, Validators.required)
+      answer: this.fb.control({value: this.answer?.value, disabled: this.isEdit}, Validators.required)
     });
   }
 
@@ -42,7 +42,7 @@ export class QuestionSingleChoiceComponent implements OnInit {
     } else {
       this.questionnaireService.setAnswer(
         this.question.id,
-        this.form.value.answer
+        this.form.value.answer,
       );
     }
   }

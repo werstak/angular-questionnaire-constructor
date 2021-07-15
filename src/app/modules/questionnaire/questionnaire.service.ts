@@ -37,6 +37,8 @@ export class QuestionnaireService {
       map(([questions, allAnswers]) => {
         return questions.filter(question => {
           return Object.keys(allAnswers).includes(String(question.id));
+        }).sort((current, next) => {
+          return allAnswers[next.id].createdAt - allAnswers[current.id].createdAt;
         });
       }),
     );
@@ -46,7 +48,8 @@ export class QuestionnaireService {
 
   setAnswer(questionId: number, answer: string | string[]): void {
     const answers = this.getAllAnswers();
-    answers[questionId] = answer;
+    answers[questionId] = {createdAt: Date.now(), value: answer};
+
     localStorage.setItem('answers', JSON.stringify(answers));
 
     this.allAnswers$.next(answers);

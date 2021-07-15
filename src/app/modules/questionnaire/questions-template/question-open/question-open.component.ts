@@ -33,7 +33,7 @@ export class QuestionOpenComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      answer: this.fb.control({value: this.answer?.answer, disabled: this.isEdit}, Validators.compose([
+      answer: this.fb.control({value: this.answer?.value, disabled: this.isEdit}, Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(225)])
@@ -47,7 +47,7 @@ export class QuestionOpenComponent implements OnInit {
     } else {
       this.questionnaireService.setAnswer(
         this.question.id,
-        this.form.value
+        this.form.value.answer
       );
     }
   }

@@ -32,8 +32,8 @@ export class QuestionMultipleChoiceComponent implements OnInit {
 
   private buildForm(): void {
     const controls = this.question.answers.reduce((acc, answer) => {
-      const value = Boolean(this.answer?.[answer.value]);
-      acc[answer.value] = [{value, disabled: this.isEdit}];
+      const value = Boolean(this.answer?.value[answer.value]);
+      acc[answer.value] = [{ value, disabled: this.isEdit }];
       return acc;
     }, {});
     this.form = this.fb.group(controls, {
